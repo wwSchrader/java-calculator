@@ -22,6 +22,7 @@ class App extends Component {
       case '7':
       case '8':
       case '9':
+      case '0':
         mathArray = this.numeralInput(mathInput);
         break;
       case '/':
@@ -44,9 +45,26 @@ class App extends Component {
     var mathArray = this.state.mathOperation;
 
     if (mathInput === 'AC') {
+      //clear array
       return [];
     } else if (mathInput === 'CE') {
       mathArray.pop();
+      return mathArray;
+    } else if (mathInput === '=' && mathArray.length > 2 && mathArray.length % 2 === 1) {
+      //check to see if math equation has a proper math statement to evaluate
+      //first make sure there are more than two elements to check for number operator number pattern
+      //check for remainder is odd to ensure current last input is a number
+
+      var mathArrayTemp = mathArray.slice();
+      //take first 3 elements from array to evaluate
+      var mathAnswer = eval(mathArrayTemp.splice(0, 3).join(""));
+      //take next two elements to evaluate until temp array is empty
+      while (mathArrayTemp.length > 0) {
+        mathAnswer = eval(mathAnswer + mathArrayTemp.splice(0 , 2).join(""));
+      }
+      //push the operator and answer onto mathArray to be returned
+      mathArray.push(mathInput);
+      mathArray.push(mathAnswer);
       return mathArray;
     }
   }
