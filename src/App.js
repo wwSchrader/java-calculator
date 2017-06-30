@@ -30,10 +30,25 @@ class App extends Component {
       case '+':
         mathArray = this.operationInput(mathInput);
         break;
+      case '=':
+      case 'AC':
+      case 'CE':
+        mathArray = this.finalizeInput(mathInput);
     }
     this.setState({
       mathOperation: mathArray
     });
+  }
+
+  finalizeInput(mathInput) {
+    var mathArray = this.state.mathOperation;
+
+    if (mathInput === 'AC') {
+      return [];
+    } else if (mathInput === 'CE') {
+      mathArray.pop();
+      return mathArray;
+    }
   }
 
   operationInput(mathInput) {
@@ -53,7 +68,7 @@ class App extends Component {
     var mathArray = this.state.mathOperation;
     var lastEntry = mathArray[mathArray.length - 1];
     //if last input is an operator, push mathInput onto array
-    if (lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+    if (mathArray.length === 0 || lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
       mathArray.push(mathInput);
     } else {
       //add mathInput to last entry of mathArray
