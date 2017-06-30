@@ -23,15 +23,30 @@ class App extends Component {
       case '8':
       case '9':
         mathArray = this.numeralInput(mathInput);
+        break;
       case '/':
       case '*':
       case '-':
       case '+':
         mathArray = this.operationInput(mathInput);
+        break;
     }
     this.setState({
       mathOperation: mathArray
     });
+  }
+
+  operationInput(mathInput) {
+    var mathArray = this.state.mathOperation;
+    var lastEntry = mathArray[mathArray.length - 1];
+    //if the lastEntry is an operator, replace operator with new operator
+    if (lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+      mathArray[mathArray.length - 1] = mathInput;
+    } else {
+      //add operator to end of mathArray
+      mathArray.push(mathInput);
+    }
+    return mathArray;
   }
 
   numeralInput(mathInput) {
@@ -103,7 +118,7 @@ class Buttons extends Component {
           <button value="4" onClick={this.handleMathInput}>4</button>
           <button value="5" onClick={this.handleMathInput}>5</button>
           <button value="6" onClick={this.handleMathInput}>6</button>
-          <button value="7" onClick={this.handleMathInput}>+</button>
+          <button value="+" onClick={this.handleMathInput}>+</button>
         </div>
         <div>
           <button value="1" onClick={this.handleMathInput}>1</button>
