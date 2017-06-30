@@ -5,7 +5,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mathOperation: ['9', '+', '4']
+      mathOperation: []
     }
     this.handleMathInput = this.handleMathInput.bind(this);
   }
