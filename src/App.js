@@ -50,6 +50,19 @@ class App extends Component {
     } else if (mathInput === 'CE') {
       mathArray.pop();
       return mathArray;
+    } else if (mathInput === '=' && mathArray[mathArray.length - 2] === '=') {
+      //if the math equation was already evaluated, repeat last operator on math answer
+      var newArray = [];
+      //put last answer as first number in new array
+      newArray.push(mathArray[mathArray.length - 1]);
+      //grab the last operator and number entered from before
+      newArray.push(mathArray.slice(-4, -3));
+      newArray.push(mathArray.slice(-3, -2));
+
+      var mathNewAnswer = eval(newArray.join(""));
+      newArray.push(mathInput);
+      newArray.push(mathNewAnswer);
+      return newArray;
     } else if (mathInput === '=' && mathArray.length > 2 && mathArray.length % 2 === 1) {
       //check to see if math equation has a proper math statement to evaluate
       //first make sure there are more than two elements to check for number operator number pattern
@@ -65,6 +78,8 @@ class App extends Component {
       //push the operator and answer onto mathArray to be returned
       mathArray.push(mathInput);
       mathArray.push(mathAnswer);
+      return mathArray;
+    } else {
       return mathArray;
     }
   }
