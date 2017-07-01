@@ -88,8 +88,14 @@ class App extends Component {
   operationInput(mathInput) {
     var mathArray = this.state.mathOperation;
     var lastEntry = mathArray[mathArray.length - 1];
-    //if the lastEntry is an operator, replace operator with new operator
+    if (mathArray[mathArray.length - 2] === '=') {
+      //if the last operation was evaluated, start a new mathArray with the answer as the first input
+      var aNewMathArray = [lastEntry];
+      aNewMathArray.push(mathInput);
+      return aNewMathArray;
+    }
     if (lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+      //if the lastEntry is an operator, replace operator with new operator
       mathArray[mathArray.length - 1] = mathInput;
     } else {
       //add operator to end of mathArray
