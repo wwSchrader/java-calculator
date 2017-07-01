@@ -18,6 +18,18 @@
   font-size: large;
 }
 
+button {
+  margin: 3px;
+  padding: 20px;
+  transition-duration: 0.4s;
+  border-radius: 8px;
+}
+
+button:hover {
+  color: white;
+  background-color: red;
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
