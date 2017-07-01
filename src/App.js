@@ -107,8 +107,12 @@ class App extends Component {
   numeralInput(mathInput) {
     var mathArray = this.state.mathOperation;
     var lastEntry = mathArray[mathArray.length - 1];
-    //if last input is an operator, push mathInput onto array
-    if (mathArray.length === 0 || lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+    if (mathArray[mathArray.length - 2] === '=') {
+      //start new equation if last equation was already evaluated
+      var newArray = [mathInput];
+      return newArray;
+    } else if (mathArray.length === 0 || lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+      //if last input is an operator, push mathInput onto array
       mathArray.push(mathInput);
     } else {
       //add mathInput to last entry of mathArray
