@@ -52,6 +52,10 @@ class App extends Component {
       mathArray.pop();
       return mathArray;
     } else if (mathInput === '=' && mathArray[mathArray.length - 2] === '=') {
+      if (mathArray[mathArray.length - 1] === '.') {
+        //do nothing if last entry is just a decimal
+        return mathArray;
+      }
       //if the math equation was already evaluated, repeat last operator on math answer
       var newArray = [];
       //put last answer as first number in new array
@@ -66,6 +70,10 @@ class App extends Component {
       return newArray;
     } else if (mathInput === '=' && mathArray.length > 2 && mathArray.length % 2 === 1) {
       //check to see if math equation has a proper math statement to evaluate
+      if (mathArray[mathArray.length - 1] === '.') {
+        //do nothing if last entry is just a decimal
+        return mathArray;
+      }
       //first make sure there are more than two elements to check for number operator number pattern
       //check for remainder is odd to ensure current last input is a number
 
@@ -88,13 +96,14 @@ class App extends Component {
   operationInput(mathInput) {
     var mathArray = this.state.mathOperation;
     var lastEntry = mathArray[mathArray.length - 1];
-    if (mathArray[mathArray.length - 2] === '=') {
+    if (lastEntry === '.'){
+      return mathArray;
+    } else if (mathArray[mathArray.length - 2] === '=') {
       //if the last operation was evaluated, start a new mathArray with the answer as the first input
       var aNewMathArray = [lastEntry];
       aNewMathArray.push(mathInput);
       return aNewMathArray;
-    }
-    if (lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
+    } else if (lastEntry === '/' || lastEntry === '*' || lastEntry === '-' || lastEntry === '+') {
       //if the lastEntry is an operator, replace operator with new operator
       mathArray[mathArray.length - 1] = mathInput;
     } else {
