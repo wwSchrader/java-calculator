@@ -23,6 +23,7 @@ class App extends Component {
       case '8':
       case '9':
       case '0':
+      case '.':
         mathArray = this.numeralInput(mathInput);
         break;
       case '/':
