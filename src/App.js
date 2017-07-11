@@ -67,12 +67,14 @@ class App extends Component {
       newArray.push(mathArray.slice(-4, -3));
       newArray.push(mathArray.slice(-3, -2));
 
+      // eslint-disable-next-line
       var mathNewAnswer = eval(newArray.join(""));
       newArray.push(mathInput);
       newArray.push(mathNewAnswer);
       return newArray;
     } else if (mathInput === '=' && mathArray.length > 2 && mathArray.length % 2 === 1) {
       //check to see if math equation has a proper math statement to evaluate
+      // eslint-disable-next-line
       if (mathArray[mathArray.length - 1] === '.') {
         //do nothing if last entry is just a decimal
         return mathArray;
@@ -82,9 +84,11 @@ class App extends Component {
 
       var mathArrayTemp = mathArray.slice();
       //take first 3 elements from array to evaluate
+      // eslint-disable-next-line
       var mathAnswer = eval(mathArrayTemp.splice(0, 3).join(""));
       //take next two elements to evaluate until temp array is empty
       while (mathArrayTemp.length > 0) {
+        // eslint-disable-next-line
         mathAnswer = eval(mathAnswer + mathArrayTemp.splice(0 , 2).join(""));
       }
       //push the operator and answer onto mathArray to be returned
