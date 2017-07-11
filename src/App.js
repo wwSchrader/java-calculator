@@ -36,6 +36,9 @@ class App extends Component {
       case 'AC':
       case 'CE':
         mathArray = this.finalizeInput(mathInput);
+        break;
+      default:
+        throw new Error('You broke it!!');
     }
     this.setState({
       mathOperation: mathArray
@@ -133,6 +136,7 @@ class App extends Component {
   render() {
     return (
       <div>
+        <h1>Java Calculator</h1>
         <InputDisplay mathOperation={this.state.mathOperation} />
         <ChainedDisplay mathOperation={this.state.mathOperation} />
         <Buttons onMathInput={this.handleMathInput} />
