@@ -144,7 +144,7 @@ class App extends Component {
 class InputDisplay extends Component {
   render() {
     return (
-        <h2>{this.props.mathOperation[this.props.mathOperation.length - 1]}</h2>
+        <h2 id="inputdisplay">{this.props.mathOperation[this.props.mathOperation.length - 1]}</h2>
     );
   }
 }
@@ -152,7 +152,7 @@ class InputDisplay extends Component {
 class ChainedDisplay extends Component {
   render() {
     return (
-      <p>{this.props.mathOperation.join("")}</p>
+      <p id="chaineddisplay">{this.props.mathOperation.join("")}</p>
     );
   }
 }

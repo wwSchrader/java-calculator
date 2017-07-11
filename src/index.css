@@ -3,3 +3,17 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+#inputdisplay {
+    padding: 20px;
+    border-style: ridge;
+    text-align: right;
+    max-width: 300px;
+}
+
+#chaineddisplay {
+    padding: 20px;
+    border-style: inset;
+    text-align: right;
+    max-width: 300px;
+}
